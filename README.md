@@ -4,6 +4,42 @@ Edge GPT Web Bridge is a small local tool that lets Codex or another automation 
 
 It is useful when you want an agent to use your own ChatGPT web account as an external advisor, while keeping the interaction visible in the browser.
 
+## 中文快速上手
+
+这个项目让 Codex 或其他本地自动化脚本固定使用 Microsoft Edge 打开 ChatGPT 网页端，并通过你已经登录的 ChatGPT 网页账号提问、复制长回答、配合文件上传和下载。
+
+每个使用者都需要在自己的电脑上手动登录一次 ChatGPT。仓库不会也不应该包含任何人的浏览器 profile、cookie、账号数据、下载文件或测试输出。
+
+```powershell
+git clone https://github.com/LongWeihan/edge-gpt-web-bridge.git
+cd edge-gpt-web-bridge
+Copy-Item .\config.example.json .\config.json
+node .\scripts\gpt-edge.mjs setup
+```
+
+第一次运行 `setup` 后，在打开的 Edge 窗口里手动登录 ChatGPT。之后可以这样测试：
+
+```powershell
+node .\scripts\gpt-edge.mjs ask --prompt "用三句话解释 Transformer 的注意力机制。"
+```
+
+默认策略是 GPT-5.5 Thinking + `xhigh` / `深入`，新会话提问，并且不使用 Pro。只有在你明确愿意消耗 Pro 配额时才加 `--allow-pro`。
+
+如果要让新的 Codex 会话复用这个能力，先安装仓库里的 skill：
+
+```powershell
+Copy-Item `
+  -Path ".\codex-skill\edge-gpt-web" `
+  -Destination "$env:USERPROFILE\.codex\skills\edge-gpt-web" `
+  -Recurse -Force
+```
+
+然后在新 Codex 会话里说：
+
+```text
+Use $edge-gpt-web to ask ChatGPT in Edge. You may use my logged-in ChatGPT web account for ordinary questions. Avoid Pro unless I explicitly allow it. Ask before uploading sensitive files.
+```
+
 ## What It Does
 
 - Opens Microsoft Edge with a dedicated automation profile.
