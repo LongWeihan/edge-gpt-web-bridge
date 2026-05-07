@@ -1,0 +1,26 @@
+{
+  "name": "edge-gpt-web-bridge",
+  "version": "0.1.0",
+  "description": "A local bridge for asking ChatGPT through Microsoft Edge web UI from Codex or other automation workflows.",
+  "type": "module",
+  "bin": {
+    "gpt-edge": "./scripts/gpt-edge.mjs"
+  },
+  "scripts": {
+    "check": "node --check ./scripts/gpt-edge.mjs",
+    "setup": "node ./scripts/gpt-edge.mjs setup",
+    "status": "node ./scripts/gpt-edge.mjs status",
+    "ask": "node ./scripts/gpt-edge.mjs ask"
+  },
+  "keywords": [
+    "codex",
+    "chatgpt",
+    "edge",
+    "browser-automation",
+    "cdp"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  }
+}

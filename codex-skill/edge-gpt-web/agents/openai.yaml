@@ -1,0 +1,7 @@
+interface:
+  display_name: "Edge GPT Web"
+  short_description: "Ask ChatGPT web through Edge"
+  default_prompt: "Use $edge-gpt-web to ask ChatGPT in Edge and save the answer."
+
+policy:
+  allow_implicit_invocation: true

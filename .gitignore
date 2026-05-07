@@ -1,0 +1,8 @@
+config.json
+edge-profile/
+outputs/
+test-results/
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
